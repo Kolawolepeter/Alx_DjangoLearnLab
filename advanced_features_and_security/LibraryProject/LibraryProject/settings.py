@@ -1,3 +1,5 @@
+["bookshelf.CustomUser"]
+
 # LibraryProject/settings.py
 
 """
