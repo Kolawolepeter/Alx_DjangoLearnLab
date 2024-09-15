@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Posts with tag: {{ request.resolver_match.kwargs.slug }}</h1>
+    <ul>
+        {% for post in object_list %}
+            <li><a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></li>
+        {% empty %}
+            <li>No posts found for this tag.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -69,14 +69,14 @@ urlpatterns = [
     path('tags/<slug:tag_slug>/', PostsByTagView.as_view(), name='posts_by_tag'),
 ]
 
-from django.views.generic import ListView
-from taggit.models import Tag
-from .models import Post
+from django.urls import path
+from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, PostByTagListView
 
-class PostByTagListView(ListView):
-    model = Post
-    template_name = 'post_list_by_tag.html'  # Use your template name here
-
-    def get_queryset(self):
-        tag_slug = self.kwargs.get('slug')
-        return Post.objects.filter(tags__slug=tag_slug)
+urlpatterns = [
+    path('posts/', PostListView.as_view(), name='post-list'),
+    path('posts/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
+    path('posts/new/', PostCreateView.as_view(), name='post-create'),
+    path('posts/<int:pk>/edit/', PostUpdateView.as_view(), name='post-update'),
+    path('posts/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
+    path('tags/<slug:slug>/', PostByTagListView.as_view(), name='post-by-tag'),
+]
