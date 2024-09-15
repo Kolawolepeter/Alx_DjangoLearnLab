@@ -1,7 +1,10 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from.forms import  CustomUserCreationForm  # You’ll create this form
+from.forms import  CustomUserCreationForm  
+from django.contrib.auth.decorators import login_required
+
+# You’ll create this form
 
 # Registration view
 def register(request):
@@ -82,3 +85,28 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
 from .forms import PostForm
+
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .models import Post
+from .forms import PostForm
+
+# List all posts (no login required)
+class PostListView(ListView):
+    model = Post
+    template_name = 'blog/post_list.html'
+
+# Only logged-in users can create posts
+class PostCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'blog/post_form.html'
+    success_url = reverse_lazy('post-list')
+
+# Example of a function-based view using login_required
+@login_required
+def some_protected_view(request):
+    # Some protected logic
+    return render(request, 'some_template.html')
