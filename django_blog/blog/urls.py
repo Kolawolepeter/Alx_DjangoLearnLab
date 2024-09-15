@@ -68,3 +68,15 @@ urlpatterns = [
     path('search/', post_search, name='post_search'),
     path('tags/<slug:tag_slug>/', PostsByTagView.as_view(), name='posts_by_tag'),
 ]
+
+from django.views.generic import ListView
+from taggit.models import Tag
+from .models import Post
+
+class PostByTagListView(ListView):
+    model = Post
+    template_name = 'post_list_by_tag.html'  # Use your template name here
+
+    def get_queryset(self):
+        tag_slug = self.kwargs.get('slug')
+        return Post.objects.filter(tags__slug=tag_slug)
