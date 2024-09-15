@@ -43,3 +43,16 @@ class Comment(models.Model):
     def __str__(self):
         return f'Comment by {self.author} on {self.post}'
 
+from django.db import models
+from taggit.managers import TaggableManager  # Import TaggableManager
+
+class Post(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    # Other fields you may have
+    tags = TaggableManager()  # Add this line to include tags functionality
+
+    def __str__(self):
+        return self.title
+
+
