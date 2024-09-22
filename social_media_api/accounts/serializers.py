@@ -23,3 +23,5 @@ class UserSerializer(serializers.ModelSerializer):
         user = get_user_model().objects.create_user(**validated_data)  # Create user
         Token.objects.create(user=user)  # Create a token for the user
         return user
+
+#["serializers.CharField()"]
