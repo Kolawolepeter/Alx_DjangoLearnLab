@@ -180,5 +180,6 @@ MIDDLEWARE = [
     # other middlewares
 ]
 
+#["STATIC_ROOT"]
 
 #posts
