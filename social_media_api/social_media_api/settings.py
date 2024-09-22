@@ -164,4 +164,21 @@ TEMPLATES = [
     },
 ]
 
+DEBUG = False
+ALLOWED_HOSTS = ['your_domain.com', 'your_server_ip']
+
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_SSL_REDIRECT = True  # Enable SSL redirection
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # other middlewares
+]
+
+
 #posts
