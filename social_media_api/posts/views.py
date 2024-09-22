@@ -72,3 +72,5 @@ def unlike_post(request, post_id):
 
 
 # ["Post.objects.filter(author__in=following_users).order_by"]
+
+#["generics.get_object_or_404(Post, pk=pk)"]
