@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',  # For token authentication
     'accounts',
+    'django_filters'
     'taggit',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -162,3 +163,5 @@ TEMPLATES = [
         'DIRS': [BASE_DIR / 'templates'],
     },
 ]
+
+#posts
