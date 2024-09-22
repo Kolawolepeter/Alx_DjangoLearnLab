@@ -24,3 +24,10 @@ def login(request):
         token, created = Token.objects.get_or_create(user=user)
         return Response({'token': token.key})
     return Response({'error': 'Invalid credentials'}, status=400)
+
+from rest_framework import generics
+from .serializers import UserSerializer
+
+class UserRegisterView(generics.CreateAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
