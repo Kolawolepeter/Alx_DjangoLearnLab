@@ -34,4 +34,4 @@ def user_feed(request):
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
 
-# ["generics.GenericAPIView", "permissions.IsAuthenticated"]
+# ["Post.objects.filter(author__in=following_users).order_by"]
